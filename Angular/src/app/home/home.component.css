@@ -1,0 +1,11 @@
+/* css for home image*/
+.img-wrapper{
+		max-height: 400px;
+		overflow: hidden;
+}
+.imgcenter {
+	margin-top: -190px; 
+    display: block;
+    width: 100%;
+
+}

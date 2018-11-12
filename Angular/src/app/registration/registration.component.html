@@ -1,0 +1,36 @@
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+  <div class="imgcontainer">
+    <!--<img src="image.png" alt="Avatar" class="avatar"> insert image here-->
+  </div>
+
+  <div class="form-group">
+    <div><!-- class="form-control">-->
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" formControlName="username" required>
+    </div>
+
+    <div><!-- class="form-control">-->
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="email" formControlName="email" required>
+    </div>
+
+    <div><!-- class="form-control">-->
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" formControlName="psw" required>
+    </div>
+
+    <div><!-- class="form-control">-->
+      <label for="adminUser"><b>Type of user: </b></label><br>
+      <input type="radio" placeholder="For admin" name="adminUser" formControlName="adminUser" value="1" required>Admin
+      <input type="radio" placeholder="For user" name="adminUser" formControlName="adminUser" value="0" required>User
+    </div>
+
+    <button type="submit">Register</button>
+    
+  </div>
+
+  <div class="container" style="background-color:#f1f1f1">
+    <button routerLink="" type="button" class="cancelbtn">Cancel</button>
+  
+  </div>
+</form>

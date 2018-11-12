@@ -1,0 +1,26 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div class="imgcontainer">
+    <!--<img src="image.png" alt="Avatar" class="avatar"> insert image here-->
+  </div>
+
+  <div class="form-group">
+      <div> <!--class="form-control">-->
+        <label for="username"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="username" required formControlName="username">
+      </div>
+      <div><!-- class="form-control"> -->
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required formControlName="psw">
+      </div>
+    <button type="submit">Login</button>
+    <label>
+      <input type="checkbox" checked="checked" name="remember"> Remember me
+    </label>
+  </div>
+
+  <div class="container" style="background-color:#f1f1f1">
+    <button routerLink="" type="button" class="cancelbtn">Cancel</button>
+    
+    <span class="psw">Forgot <a href="#">password?</a></span>
+  </div>
+</form>

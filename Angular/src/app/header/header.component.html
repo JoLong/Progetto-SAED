@@ -1,0 +1,26 @@
+<header class="header-login-signup" >
+
+	<div class="header-limiter">
+
+		<h1><a routerLink="home"><span>Albergo</span></a></h1>
+
+		<nav>
+			<a routerLink="home">Home</a>
+			<a routerLink="test" class="selected">Blog</a>
+			<a routerLink="home">Pricing</a>
+		</nav>
+
+		<ul *ngIf="!localStorage.getItem('token')">
+			<li><a routerLink="login" >Login</a></li>
+			<li><a routerLink="registration" >registration</a></li>
+		</ul>
+		<ul *ngIf="localStorage.getItem('token')">
+			<li><a routerLink=" " >Welcome</a></li>
+			<li><a (click)="logout()">Logout</a></li>
+		</ul>
+	</div>
+
+	<div>
+	</div>
+
+</header>

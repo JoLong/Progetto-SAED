@@ -1,0 +1,143 @@
+<!--this page should be dynamic -->
+
+
+<div class="container">
+    <div class="img-wrapper">
+        <img src="src/albergo.jpg" alt="albergo" class="imgcenter">
+    </div>
+    <!-- user homepage -->
+    <ul class="list-group">
+        <b>Select the type of the room you prefer:</b>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <button (click)='roomSearch("normal")'> Normal</button>
+            <span class="badge badge-primary badge-pill">*</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <button (click)='roomSearch("comfort")'> Comfort</button>
+            <span class="badge badge-primary badge-pill">*</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <button (click)='roomSearch("superior")'> Superior</button>
+            <span class="badge badge-primary badge-pill">*</span>
+        </li>
+    </ul>
+
+
+    <a *ngIf="!calendarList && !prenotationStatus && localStorage.getItem('role') == 1" class='btn btn-success m-r-5px'
+       style="margin-left: 45%; margin-right: 45%;" (click)="createRoom()">New room</a>
+
+
+    <div *ngIf="calendarList">
+        <div class="row">
+            <div class="col-md-12">
+
+                <!-- HTML table for our list of rooms records -->
+                <table class='table table-hover table-responsive table-bordered'>
+
+                    <tr>
+                        <th>Room</th>
+                        <th>Price</th>
+                        <th>Type</th>
+                        <th>Persons</th>
+                        <th>Occupated from</th>
+                        <th>Occupated to</th>
+                    </tr>
+
+                    <!-- Use *ngFor directive to loop throught our list of rooms. -->
+                    <tr *ngFor="let room of rooms">
+                        <td>{{room.name}}</td>
+                        <td>{{room.price}}</td>
+                        <td>{{room.type}}</td>
+                        <td>{{room.persons}}</td>
+                        <td>{{room.occupated_from}}</td>
+                        <td>{{room.occupated_to}}</td>
+                        <td>
+                            <!-- prenote one room button -->
+                            <a *ngIf="!room.occupated_from && !room.occupated_to" class='btn btn-primary m-r-5px'
+                               (click)='prenotation(room.id)'>
+                                <span class='glyphicon glyphicon-eye-open'></span> Prenota
+                            </a>
+                        </td>
+                        <td>
+                            <!-- undo prenotation one room button -->
+                            <a *ngIf="room.occupated_from && room.occupated_to" class='btn btn-warning m-r-5px'
+                               (click)='undoPrenotation(room.id)'>
+                                <span class='glyphicon glyphicon-eye-open'></span> Annulla
+                            </a>
+                        </td>
+                        <!-- for admin-->
+                        <div *ngIf="localStorage.getItem('role') == 1">
+                            <td>
+                                <!-- delete room button -->
+                                <a class='btn btn-danger m-r-5px' (click)='deleteRoom(room.id)'>
+                                    <span class='glyphicon glyphicon-eye-open'></span> Delete
+                                </a>
+                            </td>
+                            <td>
+                                <!-- update room button -->
+                                <a class='btn btn-danger m-r-5px' (click)='updateRoom(room.id)'>
+                                    <span class='glyphicon glyphicon-eye-open'></span> Update
+                                </a>
+                            </td>
+                        </div>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- for prenotation -->
+
+    <form *ngIf="prenotationStatus" [formGroup]="prenotationForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+
+            <mat-form-field>
+                <input matInput [matDatepicker]="pickerFrom" formControlName="pickerFrom"
+                       placeholder="Choose a date from" required="true" name="pickerFrom">
+                <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+                <mat-datepicker #pickerFrom></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput [matDatepicker]="pickerTo" formControlName="pickerTo"
+                       placeholder="Choose a date to" required="true" name="pickerTo">
+                <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+                <mat-datepicker #pickerTo></mat-datepicker>
+            </mat-form-field>
+
+            <button type="submit">Prenota</button>
+
+        </div>
+
+    </form>
+
+    <!-- for undo prenotation -->
+
+    <form *ngIf="undoPrenotationStatus" [formGroup]="undoPrenotationForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+            <label for="undoPrenotationLabel"><b>Are you sure? </b></label><br>
+            <input type="radio" placeholder="Sure" name="undoYesOrNot" formControlName="undoYesOrNot" value="1"
+                   required>Yes
+            <input type="radio" placeholder="Not sure" name="undoYesOrNot" formControlName="undoYesOrNot" value="0"
+                   required>No
+        </div>
+
+        <button type="submit">Annulla registrazione</button>
+
+    </form>
+
+</div>
+
+
+<div>
+
+</div>
+
+
+<!-- admin homepage -->
+<div *ngIf="localStorage.getItem('role') == 1">
+
+</div>

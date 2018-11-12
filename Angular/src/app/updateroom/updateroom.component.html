@@ -1,0 +1,32 @@
+<form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+  <div class="imgcontainer">
+    <!--<img src="image.png" alt="Avatar" class="avatar"> insert image here-->
+  </div>
+
+  <div class="form-group">
+    <div> <!--class="form-control">-->
+      <label for="roomname"><b>Name</b></label>
+      <input type="text" placeholder="Enter the new name" name="roomname" required formControlName="roomname">
+    </div>
+    <div><!-- class="form-control"> -->
+      <label for="roomprice"><b>Price</b></label>
+      <input type="text" placeholder="Enter the new price" name="roomprice" required formControlName="roomprice">
+    </div>
+    <div> <!--class="form-control">-->
+      <label for="roompersons"><b>Persons</b></label>
+      <input type="text" placeholder="Enter the new persons number" name="roompersons" required formControlName="roompersons">
+    </div>
+    <div><!-- class="form-control">-->
+      <label for="roomtype"><b>Type of room: </b></label><br>
+      <input type="radio" placeholder="For admin" name="roomtype" formControlName="roomtype" value="NORMAL" required>Normal
+      <input type="radio" placeholder="For user" name="roomtype" formControlName="roomtype" value="COMFORT" required>Comfort
+      <input type="radio" placeholder="For admin" name="roomtype" formControlName="roomtype" value="SUPERIOR" required>Superior
+    </div>
+    <button type="submit">Update</button>
+  </div>
+
+  <div class="container" style="background-color:#f1f1f1">
+    <button routerLink="" type="button" class="cancelbtn">Cancel</button>
+
+  </div>
+</form>
